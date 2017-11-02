@@ -1,0 +1,28 @@
+machine:
+  environment:
+
+dependencies:
+  cache_directories:
+
+  post:
+
+database:
+  override:
+    - mkdir -p config
+    - |
+        echo 'test:
+          host: localhost
+          username: ubuntu
+          database: circle_ruby_test
+          adapter: postgresql
+        ' > config/database.yml
+    - bundle exec rake db:create db:migrate --trace
+
+test:
+  override:
+    - COVERAGE=true DEFER_GC=1 bundle exec rspec:
+        parallel: true
+        files:
+          - spec/**/*_spec.rb
+  post:
+

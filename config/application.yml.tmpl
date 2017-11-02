@@ -1,0 +1,106 @@
+REDIS_URL: 'redis://redis:6379/12'
+
+development:
+  DEFAULT_EMAIL_FROM: 'RTH Team <info@rth.janpankai.com>'
+  DEVELOPER_EMAIL: 'email@example.com'
+  EMAIL_PASSWORD: ''
+  EMAIL_SENDER: ''
+  WEB_URL: 'http://localhost:3000/'
+
+  RDS_DB_NAME: 'rth_development'
+  RDS_HOSTNAME: 'db'
+  RDS_PORT: '3306'
+  RDS_USERNAME: 'root'
+  RDS_PASSWORD: 'pwd13579'
+  RAILS_MAX_THREADS: '5'
+
+  SIDEKIQ_PASSWORD: 'b'
+  SIDEKIQ_USERNAME: 'a'
+
+test:
+  CAPYBARA_API_PORT: '33666'
+  SELENIUM_APP_HOST: 'web_test:3000'
+
+  DEFAULT_EMAIL_FROM: 'RTH Team <info@rth.janpankai.com>'
+  EMAIL_PASSWORD: ''
+  EMAIL_SENDER: ''
+  WEB_URL: 'http://localhost:3002/'
+
+  RDS_DB_NAME: 'rth_test'
+  RDS_HOSTNAME: 'db'
+  RDS_PORT: '3306'
+  RDS_USERNAME: 'root'
+  RDS_PASSWORD: 'pwd13579'
+  RAILS_MAX_THREADS: '5'
+
+staging:
+  RAILS_LOG_TO_STDOUT: true
+
+  DEFAULT_EMAIL_FROM: 'RTH Team <info@rth.janpankai.com>'
+  EMAIL_PASSWORD: ''
+  EMAIL_SENDER: ''
+  WEB_URL: 'http://rth-staging.japankai.com/'
+
+  RDS_DB_NAME: 'rth_staging'
+  RDS_HOSTNAME: 'db'
+  RDS_PORT: '3306'
+  RDS_USERNAME: 'dev'
+  RDS_PASSWORD: 'pwd@888'
+  RAILS_MAX_THREADS: '20'
+
+  SIDEKIQ_PASSWORD: 'stag@123'
+  SIDEKIQ_USERNAME: 'sidekiq'
+
+  ERRBIT_HOST: 'https://tibrrex.japankai.com'
+  ERRBIT_PROJECT_ID: '3'
+  ERRBIT_PROJECT_KEY: '8366f023f7671827298cebc45e105da7'
+
+  SECRET_KEY_BASE: 'fd608e1c2704f15114a5fa0863e748ccc4a7db625e6a1fd4a3fd55fbf9d93544d6825adac595af07482e62f15e1e7e0cad02c32fd0dc5bf59023c88823899f59'
+
+pre_production:
+  RAILS_LOG_TO_STDOUT: true
+
+  DEFAULT_EMAIL_FROM: 'RTH Team <info@rth.janpankai.com>'
+  EMAIL_PASSWORD: ''
+  EMAIL_SENDER: ''
+  WEB_URL: 'http://rth-prep.japankai.com/'
+
+  RDS_DB_NAME: 'rth_pre_production'
+  RDS_HOSTNAME: 'db'
+  RDS_PORT: '3306'
+  RDS_PASSWORD: 'pwd@888'
+  RDS_USERNAME: 'dev'
+  RAILS_MAX_THREADS: '20'
+
+  SIDEKIQ_PASSWORD: 'prod@456'
+  SIDEKIQ_USERNAME: 'sidekiq'
+
+  ERRBIT_HOST: 'https://tibrrex.japankai.com'
+  ERRBIT_PROJECT_ID: '3'
+  ERRBIT_PROJECT_KEY: '8366f023f7671827298cebc45e105da7'
+
+  SECRET_KEY_BASE: 'fa8f5340398de190e2cad78181ba98f9224622d4d95500f795b387e407612111a3d71a9178e8f6507249b8f57da5e7637e8085a657187f686e04b4a436ce48d0'
+
+production:
+  RAILS_LOG_TO_STDOUT: '1'
+
+  DEFAULT_EMAIL_FROM: 'RTH Team <info@rth.janpankai.com>'
+  EMAIL_PASSWORD: ''
+  EMAIL_SENDER:
+  WEB_URL: 'https://rth.com/'
+
+  RDS_DB_NAME: 'rth_production'
+  RDS_HOSTNAME: 'db'
+  RDS_PORT: '3306'
+  RDS_PASSWORD: 'Ex@7W809!!'
+  RDS_USERNAME: 'rth_production'
+  RAILS_MAX_THREADS: '20'
+
+  SIDEKIQ_PASSWORD: 'ks8J!aL*'
+  SIDEKIQ_USERNAME: 'sidekiq_prod'
+
+  ERRBIT_HOST: 'https://tibrrex.japankai.com'
+  ERRBIT_PROJECT_ID: '4'
+  ERRBIT_PROJECT_KEY: '0a4b41d75d6a4fcd1b48310b8decc467'
+
+  SECRET_KEY_BASE: '99297f0629421069a7be4dcdf9f3598460b69399191900678d5c5bf440b0afd86613b1e01edbef606e15372b54aef7607b84ebef6db68e07e458462de5427e56'

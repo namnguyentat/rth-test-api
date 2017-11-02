@@ -1,0 +1,61 @@
+version: '2.1'
+
+services:
+  db:
+    extends:
+      file: docker-compose-common.yml
+      service: db
+    container_name: rth_db_staging
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=pwd@888
+      - MYSQL_DATABASE=rth_staging
+
+  gems:
+    extends:
+      file: docker-compose-common.yml
+      service: gems
+    container_name: rth_gems_staging
+
+  redis:
+    extends:
+      file: docker-compose-common.yml
+      service: redis
+    container_name: rth_redis_staging
+
+  sidekiq:
+    extends:
+      file: docker-compose-common.yml
+      service: sidekiq
+    container_name: rth_sidekiq_staging
+    depends_on:
+      - db
+      - gems
+      - redis
+    volumes_from:
+      - gems
+    environment:
+      - RAILS_ENV=staging
+    entrypoint: ./docker-entrypoint.sh
+    command: ["sidekiq", "-C", "config/sidekiq.yml"]
+
+  api:
+    extends:
+      file: docker-compose-common.yml
+      service: api
+    container_name: rth_api_staging
+    depends_on:
+      - db
+      - gems
+      - sidekiq
+    volumes_from:
+      - gems
+    ports:
+      - 3101:3000
+    environment:
+      - RAILS_ENV=staging
+    entrypoint: ./docker-entrypoint.sh
+    command: ["rails", "server", "-b0"]
+    tty: true
+    stdin_open: true

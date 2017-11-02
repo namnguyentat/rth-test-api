@@ -1,0 +1,89 @@
+version: '2.1'
+
+services:
+  db:
+    extends:
+      file: docker-compose-common.yml
+      service: db
+    container_name: rth_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=pwd13579
+
+  gems:
+    extends:
+      file: docker-compose-common.yml
+      service: gems
+    container_name: rth_gems
+
+  redis:
+    extends:
+      file: docker-compose-common.yml
+      service: redis
+    container_name: rth_redis
+
+  sidekiq:
+    extends:
+      file: docker-compose-common.yml
+      service: sidekiq
+    container_name: rth_sidekiq
+    depends_on:
+      - db
+      # - elasticsearch
+      - gems
+      - redis
+    volumes_from:
+      - gems
+    environment:
+      - RAILS_ENV=development
+    entrypoint: ./docker-entrypoint.sh
+    command: ["sidekiq", "-C", "config/sidekiq.yml"]
+    tty: true
+    stdin_open: true
+
+  api:
+    extends:
+      file: docker-compose-common.yml
+      service: api
+    container_name: rth_api
+    depends_on:
+      - db
+      - gems
+      - sidekiq
+    volumes_from:
+      - gems
+    ports:
+      - 3001:3000
+    environment:
+      - RAILS_ENV=development
+    entrypoint: ./docker-entrypoint.sh
+    command: ["rails", "server", "-b0"]
+    tty: true
+    stdin_open: true
+
+  selenium_chrome_standalone:
+    extends:
+      file: docker-compose-common.yml
+      service: selenium_chrome_standalone
+    container_name: rth_selenium_standalone_chrome
+    networks:
+      - default
+      - webreact_default
+    external_links:
+      - web_test
+
+  selenium_chrome_standalone_debug:
+    extends:
+      file: docker-compose-common.yml
+      service: selenium_chrome_standalone_debug
+    container_name: rth_selenium_standalone_chrome_debug
+    ports:
+      - 5900:5900
+    networks:
+      - default
+      - webreact_default
+    external_links:
+      - web_test
+
+networks:
+  webreact_default:
+    external: true

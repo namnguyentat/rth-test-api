@@ -1,0 +1,15 @@
+en:
+  errors:
+    exists?:
+      arg:
+        default: 'not exist'
+
+    from_and_to_user:
+      arg:
+        default: 'must be different'
+
+    content_or_overall:
+      arg:
+        default: 'must be existed'
+
+    rules:

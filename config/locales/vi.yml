@@ -1,0 +1,10 @@
+vi:
+  notification:
+    comment_post: 'commented on your post'
+    reply_comment: 'replied your comment'
+    follow_user: 'started followed you'
+    upvote_post: 'upvoted your post'
+    upvote_comment: 'upvoted your comment'
+    upvote_reply: 'upvoted your reply'
+    admin: 'Admin'
+    system: 'System'

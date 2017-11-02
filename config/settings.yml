@@ -1,0 +1,48 @@
+system:
+  languages: [ja, vi, en]
+  mysql_max_int: 2147483647
+
+error:
+  unprocessable: 1
+  unauthenticated: 2
+  unauthorized: 3
+  not_exist: 4
+  invalid: 5
+  duplicated: 6
+
+contract:
+  comment:
+    content_max_length: 10000
+  reply:
+    content_max_length: 10000
+  feedback:
+    name_max_length: 255
+    email_max_length: 255
+    title_max_length: 1000
+    content_max_length: 10000
+  user:
+    name_max_length: 255
+    about_max_length: 255
+    avatar_max_length: 1000
+    company_max_length: 255
+    job_max_length: 255
+model:
+  notification:
+    actions: [
+      comment_post,
+      reply_comment,
+      follow_user,
+      upvote_post,
+      upvote_comment,
+      upvote_reply
+    ]
+    statuses: [new, read]
+    kinds: [normal, system, admin]
+  report:
+    kinds: [spam, sexual]
+  user:
+    onboardings: [new, completed]
+    notification_modes: [all, restricted, none]
+
+graph:
+  max_page_size: 20
