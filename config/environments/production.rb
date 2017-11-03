@@ -75,7 +75,7 @@ Rails.application.configure do
 
   config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins %r{\Ahttps:\/\/(www\.)?rth\.com\Z}
+      origins %r{\Ahttps:\/\/rth\.japankai\.com\Z}
       resource '*', headers: :any, methods: [:get, :post, :fetch, :update, :patch, :delete, :options]
     end
   end
